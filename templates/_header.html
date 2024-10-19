@@ -4,16 +4,17 @@
     <link rel="stylesheet" href="{%static 'css/_header.css'%}" />
 </head>
 <header class="header">
-    <div>
-        <h1>Header</h1>
+    <div id="div_logo">
+        <img src=" {% static 'svg/bibliotecando_logo.svg' %}" alt="" id="logo">
+        <p id="text_logo">Bibliotecando</p>
     </div>
     <div class="barra_pesquisa">
         <h2>Aqui estará a barra de pesquisa</h2>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="{%url 'descubra'%}">Descubra</a></li>
-                <li><a href="{%url 'meusLivros'%}">Meus Livros</a></li>
+                <li><a href="/" class="{% if request.path == '/' %}pagina_atual{% endif %}">Home</a></li>
+                <li><a href="{%url 'descubra'%}" class="{% if request.path == '/descubra/' %}pagina_atual{% endif %}">Descubra</a></li>
+                <li><a href="{%url 'meusLivros'%}" class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
             </ul>
         </nav>
     </div>

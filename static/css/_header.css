@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
 .header {
     display: flex;
     width: 1440px;
@@ -16,6 +19,22 @@ header>div {
     align-items: center;
 }
 
+p, h1, h2, h3, h4, h5, h6, a {
+    font-family: 'Inter', sans-serif;
+}
+
+li {
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    color: #2C3435;
+}
+.pagina_atual{
+    color: #7474FD;
+}
+
 .barra_pesquisa {
     display: flex;
     flex-direction: column;
@@ -23,11 +42,32 @@ header>div {
     align-items: center;
     gap: 16px;
 }
-.barra_pesquisa ul{
+
+.barra_pesquisa ul {
     display: flex;
-width: 737px;
-justify-content: space-around;
-align-items: center;
-align-content: center;
-flex-wrap: wrap;
+    width: 737px;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+#logo {
+    width: 4rem;
+    height: auto;
+}
+
+#div_logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#text_logo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #7474FD;
+    font-family: 'Inter', sans-serif;
+    
 }
