@@ -1,0 +1,23 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'css/_header.css'%}" />
+</head>
+<header class="header">
+    <div>
+        <h1>Header</h1>
+    </div>
+    <div class="barra_pesquisa">
+        <h2>Aqui estará a barra de pesquisa</h2>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{%url 'descubra'%}">Descubra</a></li>
+                <li><a href="{%url 'meusLivros'%}">Meus Livros</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <h2>Aqui estará o botão de login</h2>
+    </div>
+</header>

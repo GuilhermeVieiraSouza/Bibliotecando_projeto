@@ -1,0 +1,18 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{%static 'css/_card.css'%}" />
+
+
+</head>
+<div class="container">
+    <img src="{{item.imagem.url}}" alt="imagem do livro">
+    <div class="container_interior">
+        <p id="titulo">
+            {{item.titulo}}
+        </p>
+        <p>
+            {{item.autor.nome}}
+        </p>
+    </div>
+</div>
