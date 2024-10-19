@@ -7,16 +7,16 @@
 {% endblock %}
 {% block 'body' %}
     <main>
-        <div class="carousel-container">
-            <button class="prev" onclick="scrollCarousel(-300)">&#10094;</button>
-            <div class="carousel-items">
+        <div class="carousel-container " >
+            <button class="prev carousel-button" onclick="scrollCarousel(-1)">&#10094;</button>
+            <div class="carousel-items" id="carousel" >
                 {% for item in livros %}
-                    <div class="carousel-item">
+                    <div class="carousel-item" >
                         {% include '_card.html' with item=item %}
                     </div>
                 {% endfor %}
             </div>
-            <button class="next" onclick="scrollCarousel(300)">&#10095;</button>
+            <button class="next carousel-button" onclick="scrollCarousel(1)">&#10095;</button>
         </div>
     </main>
     <script src="{% static 'js/descubra.js' %}"></script>

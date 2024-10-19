@@ -1,16 +1,23 @@
 .carousel-container {
     position: relative;
 }
-.carousel-items{
+
+.carousel-items {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    overflow-x: scroll;
+    cursor: grab;
+    scroll-behavior: smooth;
+    user-select: none;
 }
-.prev, .next {
+
+
+.prev,
+.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
     color: white;
     border: none;
     padding: 10px;
@@ -26,4 +33,42 @@
 
 .next {
     right: 0;
+}
+
+.carousel-button {
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    position: absolute;
+    transform: translateY(-50%);
+    z-index: 1;
+    box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    background-color: #fff;
+    opacity: 0.2;
+    transition: opacity 0.5s;
+    color: #000;
+
+}
+
+.carousel-button:hover {
+    box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    opacity: 0.8;
+    background-color: #fff;
+    color: #000;
+}
+
+.carousel-button:active {
+    box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.1),
+        0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    opacity: 8;
+    background-color: #c7c7c7;
+    color: #2b2b2b;
+}
+
+.carousel-items.dragging {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
 }
