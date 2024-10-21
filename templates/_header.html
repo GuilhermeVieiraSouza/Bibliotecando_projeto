@@ -13,12 +13,12 @@
         <nav>
             <ul>
                 <li><a href="/" class="{% if request.path == '/' %}pagina_atual{% endif %}">Home</a></li>
-                <li><a href="{%url 'descubra'%}" class="{% if request.path == '/descubra/' %}pagina_atual{% endif %}">Descubra</a></li>
-                <li><a href="{%url 'meusLivros'%}" class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
+                <li><a href="{%url 'descubra'%}"
+                        class="{% if request.path == '/descubra/' %}pagina_atual{% endif %}">Descubra</a></li>
+                <li><a href="{%url 'meusLivros'%}"
+                        class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
             </ul>
         </nav>
     </div>
-    <div>
-        <h2>Aqui estará o botão de login</h2>
-    </div>
+    <h2>Aqui estará o botão de login</h2>
 </header>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}Detalhes do livro{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/detalhesLivro.css' %}">
+{% endblock %}
+{% block 'body' %}
+<main>
+    <div class="container_titulo">
+        <h2 class="titulo_livro">{{ livro.titulo }}</h2>
+        <hr class="custom_line">
+    </div>
+    <div class="container">
+        <!-- aqui começa a parte da esquerda -->
+        <div>
+            <!-- aqui fica o cardzinho, caso queira adicionar algo fora dele precisa ser fora da div que vem a seguir -->
+            <div class="detalhes_container">
+                <div class="detalhes_img">
+                    <img src="{{ livro.imagem.url }}" alt="">
+                </div>
+                <div class="detalhes-info">
+                    <p>{{livro.autor.nome}}</p>
+                    <p>Publicação: {{publicacao}}</p>
+                    <p>{{livro.genero}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- aqui começa a parte da direita  -->
+        <div class="container_direita">
+            <p>
+                {{livro.descricao}}
+            </p>
+            <!-- aqui está a parte de comentarios -->
+            <section>
+                <h2 class="h2_comentarios">Comentários</h3>
+                    <div class="container_comentarios">
+                        {% for comentario in comentarios %}
+                        <div class="container_comentario">
+                            <div class="container_usuario">
+                                <img src="{{comentario.usuario.imagem.url}}" alt="">
+                                <p>{{comentario.usuario.nome}}</p>
+                            </div>
+                            <div class="comentario">
+                                <p>{{comentario.texto}}</p>
+
+                                <p>{{comentario.nota}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+{% endblock %}

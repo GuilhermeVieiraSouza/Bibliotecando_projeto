@@ -6,6 +6,7 @@ class Usuario(models.Model):
     email = models.EmailField()
     senha = models.CharField(max_length=255)
     data_nascimento = models.DateField()
+    imagem = models.ImageField(upload_to='usuarios/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Usuario'
@@ -43,6 +44,7 @@ class Livro(models.Model):
     
 class Links(models.Model):
     url = models.URLField()
+    nome = models.CharField(max_length=255, blank=True, null=True)
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
 
     class Meta:

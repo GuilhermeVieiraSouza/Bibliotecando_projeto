@@ -72,3 +72,9 @@
     cursor: grabbing;
     cursor: -webkit-grabbing;
 }
+
+#avisos{
+    width: '100%';
+    height: auto;
+    border-radius: 0px;
+}

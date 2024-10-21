@@ -3,7 +3,7 @@
 
 .header {
     display: flex;
-    width: 1440px;
+    width: 100vw;
     height: 160px;
     padding: 29px 24px;
     justify-content: space-between;
@@ -19,7 +19,14 @@ header>div {
     align-items: center;
 }
 
-p, h1, h2, h3, h4, h5, h6, a {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
     font-family: 'Inter', sans-serif;
 }
 
@@ -27,11 +34,12 @@ li {
     list-style-type: none;
 }
 
-a{
+a {
     text-decoration: none;
     color: #2C3435;
 }
-.pagina_atual{
+
+.pagina_atual {
     color: #7474FD;
 }
 
@@ -69,5 +77,5 @@ a{
     font-weight: 700;
     color: #7474FD;
     font-family: 'Inter', sans-serif;
-    
+
 }

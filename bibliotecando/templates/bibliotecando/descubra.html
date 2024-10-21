@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'titulo' %}Descubra novos livros!!{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/descubra.css' %}">
+{% endblock %}
+{% block 'body' %}
+<main>
+    <div>
+        <img src="{% static 'img/avisos.png' %}" alt="" id="avisos">
+    </div>
+    <div class="carousel-container ">
+        <button class="prev carousel-button" onclick="scrollCarousel(-1)">&#10094;</button>
+        <div class="carousel-items" id="carousel">
+            {% for item in livros %}
+            <div class="carousel-item">
+                {% include '_card.html' with item=item %}
+            </div>
+            {% endfor %}
+        </div>
+        <button class="next carousel-button" onclick="scrollCarousel(1)">&#10095;</button>
+    </div>
+</main>
+<script src="{% static 'js/descubra.js' %}"></script>
+{% endblock %}
