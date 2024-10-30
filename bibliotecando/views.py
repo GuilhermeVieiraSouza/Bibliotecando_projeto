@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
+from . import forms
 # Create your views here.
 def descubra(request):
     livros = models.Livro.objects.all()
@@ -18,3 +19,17 @@ def detalhesLivro(request, id):
         'comentarios': comentarios
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
+
+def login(request):
+    if request.method == 'POST':
+        form = forms.UsuarioForm(request.POST, request.FILES) 
+        if form.is_valid():
+            form.save() 
+            return redirect('cadastro_sucesso')  
+    else:
+        form = forms.UsuarioForm()
+
+    contexto = {
+        'form': form
+        }
+    return render(request, 'bibliotecando/registro.html', contexto)

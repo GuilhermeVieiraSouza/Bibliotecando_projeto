@@ -7,9 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block 'titulo'%}{%endblock%}</title>
     {%block 'head'%}{%endblock%}
+    <link rel="stylesheet" href="{%static 'css/base.css'%}" />
 </head>
 <body>
-    {% include '_header.html' %}
+    <header class="header">
+        <div id="div_logo">
+            <img id="logo" src=" {% static 'svg/bibliotecandoLogo.svg' %}" alt="" >
+        </div>
+        <div class="barra_pesquisa">
+            <h2>Aqui estará a barra de pesquisa</h2>
+            <nav>
+                <ul>
+                    <li><a href="/" class="{% if request.path == '/' %}pagina_atual{% endif %}">Home</a></li>
+                    <li><a href="{%url 'descubra'%}"
+                            class="{% if request.path == '/descubra/' %}pagina_atual{% endif %}">Descubra</a></li>
+                    <li><a href="{%url 'meusLivros'%}"
+                            class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
+                </ul>
+            </nav>
+        </div>
+        <a href="{% url 'registro' %}"> login</a>
+    </header>
     {%block 'body'%}{%endblock%}
 </body>
 </html>

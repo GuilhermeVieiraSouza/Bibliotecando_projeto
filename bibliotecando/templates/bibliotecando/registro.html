@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+</head>
+
+<body>
+    <main>
+        <div class="container_left">
+            <img src="{% static 'svg/bibliotecandoLogo.svg' %}" alt="">
+        </div>
+        <div class="container_right">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+    
+                <div class="container">
+                    <h1>Registro</h1>
+                    <p>Por favor, preencha este formulário para criar uma conta.</p>
+    
+                    {{ form.nome }}
+                    {{ form.email }}
+                    {{ form.imagem }}
+                    {{ form.data_nascimento }}
+                    {{ form.endereco }}
+    
+    
+                    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                    <button type="submit" class="registerbtn">Register</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
