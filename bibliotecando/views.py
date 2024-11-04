@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from . import models
 from . import forms
 # Create your views here.
@@ -20,16 +22,36 @@ def detalhesLivro(request, id):
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
 
-def login(request):
-    if request.method == 'POST':
-        form = forms.UsuarioForm(request.POST, request.FILES) 
-        if form.is_valid():
-            form.save() 
-            return redirect('cadastro_sucesso')  
-    else:
-        form = forms.UsuarioForm()
 
-    contexto = {
-        'form': form
-        }
-    return render(request, 'bibliotecando/registro.html', contexto)
+#Sistema de login
+def register(request):
+    if request.method == 'POST':
+        form = forms.UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')
+            return redirect('usuarios:login')
+    else:
+        form = forms.UserForm()
+
+    return render(request, 'usuarios/register.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('gerencia:gerencia_inicial')
+        else:
+            messages.error(request, 'Usuário ou senha inválidos.')
+
+    return render(request, 'usuarios/login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('usuarios:login')

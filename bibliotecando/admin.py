@@ -5,8 +5,8 @@ from . import models
 # Register your models here.
 @admin.register(models.Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'email', 'data_nascimento']
-    search_fields = ['nome', 'email', 'data_nascimento']
+    list_display = ['userName', 'email', 'data_nascimento']
+    search_fields = ['userName', 'email', 'data_nascimento']
     list_filter = ['data_nascimento']
 
 @admin.register(models.Autor)

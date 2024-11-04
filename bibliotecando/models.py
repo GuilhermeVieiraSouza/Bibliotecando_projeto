@@ -1,10 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Usuario(models.Model):
-    nome = models.CharField(max_length=255)
-    email = models.EmailField()
-    senha = models.CharField(max_length=255)
+class Usuario(AbstractUser):
     data_nascimento = models.DateField()
     imagem = models.ImageField(upload_to='usuarios/', blank=True, null=True)
 
@@ -13,7 +11,7 @@ class Usuario(models.Model):
         verbose_name_plural = 'Usuarios'
 
     def __str__(self):
-        return f'{self.nome} {self.email} {self.senha}'
+        return f'{self.username} {self.data_nascimento}'
 
 class Autor(models.Model):
     nome = models.CharField(max_length=255)
