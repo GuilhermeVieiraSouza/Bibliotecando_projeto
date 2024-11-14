@@ -19,14 +19,16 @@
             <nav>
                 <ul>
                     <li><a href="/" class="{% if request.path == '/' %}pagina_atual{% endif %}">Home</a></li>
-                    <li><a href="{%url 'descubra'%}"
-                            class="{% if request.path == '/descubra/' %}pagina_atual{% endif %}">Descubra</a></li>
                     <li><a href="{%url 'meusLivros'%}"
                             class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
                 </ul>
             </nav>
         </div>
-        <a href="{% url 'registro' %}"> login</a>
+        <div id="authentication-links">
+            <a href="{% url 'login' %}" style="color: #7474FD;">Login</a>
+            <p>|</p>
+            <a href="{% url 'registro' %}">Registre-se</a>
+        </div>
     </header>
     {%block 'body'%}{%endblock%}
 </body>

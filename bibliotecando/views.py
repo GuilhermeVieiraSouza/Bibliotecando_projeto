@@ -30,11 +30,11 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')
-            return redirect('usuarios:login')
+            return redirect('bibliotecando:login')
     else:
         form = forms.UserForm()
 
-    return render(request, 'usuarios/register.html', {'form': form})
+    return render(request, 'bibliotecando/register.html', {'form': form})
 
 
 def login_view(request):

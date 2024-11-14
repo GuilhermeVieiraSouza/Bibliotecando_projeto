@@ -87,3 +87,19 @@ a {
     width: 4rem;
     height: auto;
 }
+
+#authentication-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+#authentication-links p {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    color: #2C3435;
+    
+}

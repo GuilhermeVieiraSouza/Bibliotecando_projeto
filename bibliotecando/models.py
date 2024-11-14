@@ -1,10 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
 class Usuario(AbstractUser):
     data_nascimento = models.DateField()
     imagem = models.ImageField(upload_to='usuarios/', blank=True, null=True)
+    groups = models.ManyToManyField(Group, related_name="usuario_set") 
+    user_permissions = models.ManyToManyField(Permission, related_name="usuario_permissions_set")
 
     class Meta:
         verbose_name = 'Usuario'
