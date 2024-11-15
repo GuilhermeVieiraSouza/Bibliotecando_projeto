@@ -44,7 +44,6 @@ def editar_usuario(request):
     if request.method == 'POST':
         form = forms.UserEditForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
-            print(form.cleaned_data)
             form.save()
             return redirect('bibliotecando:profile') 
         else:
