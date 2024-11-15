@@ -63,7 +63,6 @@ class Comentario(models.Model):
     livro = models.ForeignKey(Livro, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
-
     class Meta:
         verbose_name = 'Comentario'
         verbose_name_plural = 'Comentarios'

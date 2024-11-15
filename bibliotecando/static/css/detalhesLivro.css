@@ -40,12 +40,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding-left: 1.5rem ;
 }
 
 .titulo_livro {
     font-size: 1.2rem;
     font-weight: 600;
     color: #444;
+    
 }
 
 .custom_line {
@@ -55,22 +57,67 @@
     border: none;
 }
 
+
+/*arede adição de comentario*/
+.btn_comentario {
+    background-color: #7474FD;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    margin-left: 2rem;
+}
+.btn_comentario img {
+    width: 2rem;
+    height: 2rem;
+    
+}
+#estrelas{
+    color: #7474FD;
+}
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+.rating input {
+    display: none;
+}
+.rating label {
+    font-size: 2rem;
+    color: gray;
+    cursor: pointer;
+}
+.rating input:checked ~ label {
+    color: gold;
+}
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
+
 .container_direita {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    padding-right: 2rem ;
 }
 
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+/*area de comentarios*/
 .h2_comentarios {
     color: #444;
 }
 
-
 .container_comentario {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: start;
     align-items: flex-start;
     padding: 0.5rem;
     width: auto;

@@ -8,8 +8,8 @@
 {% block 'body' %}
 <main>
     <div class="container_titulo">
-        <h2 class="titulo">{{ livro.titulo }}</h2>
-        <hr class="custom-line">
+        <h2 class="titulo_livro">{{ livro.titulo }}</h2>
+        <hr class="custom_line">
     </div>
     <div class="container">
         <!-- aqui começa a parte da esquerda -->
@@ -19,12 +19,45 @@
                 <div class="detalhes_img">
                     <img src="{{ livro.imagem.url }}" alt="">
                 </div>
-                <div class="detalhes-info">
+                <div class="detalhes_info">
                     <p>{{livro.autor.nome}}</p>
                     <p>Publicação: {{publicacao}}</p>
                     <p>{{livro.genero}}</p>
                 </div>
             </div>
+            <!-- aqui fica a adição de comentario-->
+            {% if autenticado %}
+            <form method="post" >
+                {% csrf_token %}
+                <div style=>
+                    <textarea name="texto" placeholder="Deixe seu comentário..." required
+                        style="margin-left: 2rem ;"></textarea>
+                    <div class="rating">
+                        <input type="radio" id="star5" name="nota" value="5" required>
+                        <label for="star5" title="5 estrelas">★</label>
+                        <input type="radio" id="star4" name="nota" value="4">
+                        <label for="star4" title="4 estrelas">★</label>
+                        <input type="radio" id="star3" name="nota" value="3">
+                        <label for="star3" title="3 estrelas">★</label>
+                        <input type="radio" id="star2" name="nota" value="2">
+                        <label for="star2" title="2 estrelas">★</label>
+                        <input type="radio" id="star1" name="nota" value="1">
+                        <label for="star1" title="1 estrela">★</label>
+                    </div>
+
+                </div>
+
+                <button class="btn_comentario">
+                    <img src="{% static 'svg/coment.svg' %}" alt="">
+                </button>
+            </form>
+            <div>
+                <button >
+
+                </button>
+            </div>
+            {% endif %}
+
         </div>
         <!-- aqui começa a parte da direita  -->
         <div class="container_direita">
@@ -37,8 +70,8 @@
                     Disponível em:
                 </P>
                 {%for link in links%}
-                <button class="button-link" >
-                        <a href="{{link.url}}" target="_blank">
+                <button class="button-link">
+                    <a href="{{link.url}}" target="_blank">
                         <p>{{link.nome}}</p>
                     </a>
                 </button>
@@ -52,12 +85,14 @@
                         <div class="container_comentario">
                             <div class="container_usuario">
                                 <img src="{{comentario.usuario.imagem.url}}" alt="">
-                                <p>{{comentario.usuario.nome}}</p>
+
                             </div>
                             <div class="comentario">
+                                <p>{{comentario.usuario.username}}</p>
                                 <p>{{comentario.texto}}</p>
-
-                                <p>{{comentario.nota}}</p>
+                                <p id="estrelas">
+                                    {% for i in stars_range %}
+                                    {% if i <= comentario.nota %} ★ {% else %} ☆ {% endif %} {% endfor %} </p>
                             </div>
                         </div>
                         {% endfor %}

@@ -16,7 +16,21 @@ def detalhesLivro(request, id):
     livro = models.Livro.objects.get(id=id)
     comentarios = models.Comentario.objects.filter(livro=livro)
     links = models.Links.objects.filter(livro=livro)
+
+    if request.method == "POST" and request.user.is_authenticated:
+        form = forms.ComentarioForm(request.POST)
+        if form.is_valid():  
+            comentario = form.save(commit=False)
+            comentario.livro = livro
+            comentario.usuario = request.user  # Associa o usuário logado
+            comentario.save()
+            return redirect('bibliotecando:detalhesLivro', id=id)
+    else:
+        form = forms.ComentarioForm()
+
     contexto = {
+        'stars_range': range(1, 6),
+        'autenticado': request.user.is_authenticated,
         'livro': livro,
         'publicacao': f"{livro.data_publicacao.day}/{livro.data_publicacao.month}/{livro.data_publicacao.year}",
         'comentarios': comentarios,
