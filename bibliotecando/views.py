@@ -31,8 +31,10 @@ def detalhesLivro(request, id):
 @login_required(login_url='bibliotecando:login')
 def profile(request):
     usuario = request.user
+    imagem = models.Usuario.objects.get(username=usuario.username).imagem
     context = {
-        'usuario': usuario
+        'usuario': usuario,
+        'imagem': imagem
     }
     return render(request, 'bibliotecando/profile.html', context)
 
