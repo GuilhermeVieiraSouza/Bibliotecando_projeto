@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block 'titulo' %}Perfil{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
 {% block 'body' %}
 <main>
-    <div>
-        <h1>Perfil</h1>
-        <div>
-            <h2>Informações do usuário</h2>
-            <p>Nome: {{ request.user.username }}</p>
-            <p>Email: {{ request.user.email }}</p>
-            <img src="{{ imagem.url }}" alt="">
-        </div>
-        
+    <div class="container_titulo">
+        <h2 class="titulo">My Profile</h2>
+        <hr class="custom-line">
     </div>
+    <div class="container">
+        <img class="imagem-perfil" src="{{ imagem.url }}" alt="imagem de perfil">    
+        <div class="info-user">
+            <div>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                    <div>
+                        <p class="nome-user"> {{ request.user.username }}</p>
+                        <p class="email-user"> {{ request.user.email }}</p>
+                    </div>
+                    <a href="{% url 'bibliotecando:editarUsuario' %}" >
+                        <img src="{% static 'svg/Edit.svg' %}" alt="" class="imagem-edit">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </main>
 {%endblock%}

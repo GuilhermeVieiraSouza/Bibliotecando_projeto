@@ -104,3 +104,91 @@ a {
     color: #2C3435;
     
 }
+
+/*Inputs ded usuario*/
+.form-control {
+    color: #252525;
+    border: none;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+
+}
+
+.form-control:focus {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+
+}
+
+.form-group {
+    display: flex;
+    height: 2rem;
+    width: 20rem;
+    padding: 0.5rem 20px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #F3F3F3;
+    margin: 0.2rem;
+    font-weight: 400;
+    justify-content: space-between;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-group:has(.form-control:focus) {
+    outline: 2px solid #8C8CFF;
+    border-radius: 8px;
+    
+}
+.registerbtn {
+    display: flex;
+    height: 4rem;
+    width: 20rem;
+    padding: 15px 80px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 5px solid #FFF;
+    background: #7474FD;
+
+}
+
+.registerbtn p {
+    color: #FFF;
+}
+
+.registerbtn:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+}
+
+/*Alert css*/
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
+}
+
+.alert-danger {
+    color: #78261f;
+    background-color: #fadbd8;
+    border-color: #f8ccc8;
+}
+
+.text-danger {
+    color: #e74a3b !important;
+}
+
+a.text-danger:hover,
+a.text-danger:focus {
+    color: #be2617 !important;
+}

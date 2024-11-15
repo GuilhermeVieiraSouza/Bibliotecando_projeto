@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -37,6 +37,22 @@ def profile(request):
         'imagem': imagem
     }
     return render(request, 'bibliotecando/profile.html', context)
+
+@login_required
+def editar_usuario(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = forms.UserEditForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid():
+            print(form.cleaned_data)
+            form.save()
+            return redirect('bibliotecando:profile') 
+        else:
+            
+            print(form.errors) 
+    else:
+        form = forms.UserEditForm(instance=usuario)
+    return render(request, 'bibliotecando/editarUsuario.html', {'form': form})
 
 #Sistema de login
 def register(request):
