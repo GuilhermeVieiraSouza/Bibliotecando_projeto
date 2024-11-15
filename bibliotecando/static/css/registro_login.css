@@ -120,3 +120,6 @@ img {
     transform: scale(0.95);
     opacity: 0.9;
 }
+p a{
+    color: #dfdede;
+}

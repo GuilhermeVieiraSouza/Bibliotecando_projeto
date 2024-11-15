@@ -56,7 +56,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+   
 }
 
 .barra_pesquisa ul {
@@ -192,3 +192,4 @@ a.text-danger:hover,
 a.text-danger:focus {
     color: #be2617 !important;
 }
+

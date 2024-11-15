@@ -24,6 +24,18 @@
                         <img src="{% static 'svg/Edit.svg' %}" alt="" class="imagem-edit">
                     </a>
                 </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around; ">
+                    <div class="container-imagem-info-detalhes">
+                        <img src="{% static 'svg/calendar.svg' %}" alt="" class="imagem-info-detalhes">
+                    </div>
+                    <p>{{ request.user.data_nascimento }}</p>
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around; ">
+                    <div class="container-imagem-info-detalhes">
+                        <img src="{% static 'svg/calendar.svg' %}" alt="" class="imagem-info-detalhes">
+                    </div>
+                    <p>{{ request.user.data_nascimento }}</p>
+                </div>
             </div>
         </div>
     </div>

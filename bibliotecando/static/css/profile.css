@@ -71,3 +71,20 @@ main {
     font-weight: 400;
     line-height: normal;
 }
+
+.container-imagem-info-detalhes {
+    background-color: #F5F5F5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 2rem;
+    height: 2rem;
+    margin-right:0.2rem ;
+}
+.imagem-info-detalhes {
+    width: 2rem;
+    height: 2rem;
+    
+}

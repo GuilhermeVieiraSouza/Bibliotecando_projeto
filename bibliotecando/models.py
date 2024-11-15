@@ -54,7 +54,7 @@ class Links(models.Model):
         verbose_name = 'Link'
         verbose_name_plural = 'Links'
     def __str__(self):
-        return f'{self.url} {self.livro}'
+        return f'{self.url} {self.livro}' 
     
 class Comentario(models.Model):
     texto = models.TextField()

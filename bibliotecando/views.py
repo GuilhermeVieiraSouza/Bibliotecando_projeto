@@ -11,10 +11,6 @@ def descubra(request):
     livros = models.Livro.objects.all()
     return render(request, 'bibliotecando/descubra.html', {'livros': livros})
 
-@login_required(login_url='bibliotecando:login')
-def MeusLivros(request):
-    models.Favoritos.objects.all()
-    return render(request, 'bibliotecando/meusLivros.html')
 
 def detalhesLivro(request, id):
     livro = models.Livro.objects.get(id=id)
@@ -27,6 +23,11 @@ def detalhesLivro(request, id):
         'links': links
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
+
+@login_required(login_url='bibliotecando:login')
+def MeusLivros(request):
+    models.Favoritos.objects.all()
+    return render(request, 'bibliotecando/meusLivros.html')
 
 @login_required(login_url='bibliotecando:login')
 def profile(request):
@@ -49,14 +50,14 @@ def editar_usuario(request):
         else:
             
             print(form.errors) 
-    else:
+    else: 
         form = forms.UserEditForm(instance=usuario)
     return render(request, 'bibliotecando/editarUsuario.html', {'form': form})
 
 #Sistema de login
 def register(request):
     if request.method == 'POST':
-        form = forms.UserForm(request.POST)
+        form = forms.UserForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cadastro realizado com sucesso! Você já pode fazer login.')
@@ -73,7 +74,6 @@ def login_view(request):
         password = request.POST['password']
 
         user = authenticate(request, username=username, password=password)
-        print(username)
 
         if user is not None:
             login(request,user)
