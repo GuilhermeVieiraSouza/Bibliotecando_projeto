@@ -6,11 +6,11 @@ from . import models
 # Register your models here.
 @admin.register(models.Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['get_user_name', 'email', 'data_nascimento']
+    list_display = ('username', 'email', 'data_nascimento', 'get_user_name')
     search_fields = ['get_user_name', 'email', 'data_nascimento']
     list_filter = ['data_nascimento']
     def get_user_name(self, obj):
-        return obj.user.username  # Ajuste de acordo com o campo de nome que deseja exibir.
+        return obj.username  
     
     get_user_name.short_description = 'Nome do Usuário'
 

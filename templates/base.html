@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +10,36 @@
     {%block 'head'%}{%endblock%}
     <link rel="stylesheet" href="{%static 'css/base.css'%}" />
 </head>
+
 <body>
     <header class="header">
         <div id="div_logo">
-            <img id="logo" src=" {% static 'svg/bibliotecandoLogo.svg' %}" alt="" >
+            <img id="logo" src=" {% static 'svg/bibliotecandoLogo.svg' %}" alt="">
         </div>
         <div class="barra_pesquisa">
             <h2>Aqui estará a barra de pesquisa</h2>
             <nav>
                 <ul>
                     <li><a href="/" class="{% if request.path == '/' %}pagina_atual{% endif %}">Home</a></li>
-                    <li><a href="{%url 'meusLivros'%}"
+                    <li><a href="{% url 'bibliotecando:meusLivros' %}"
                             class="{% if request.path == '/meusLivros/' %}pagina_atual{% endif %}">Meus Livros</a></li>
+                    <li><a href="{% url 'bibliotecando:profile' %}"
+                            class="{% if request.path == '/profile/' %}pagina_atual{% endif %}">Perfil</a></li>
                 </ul>
             </nav>
         </div>
+        {% if user.is_authenticated %}
         <div id="authentication-links">
-            <a href="{% url 'login' %}" style="color: #7474FD;">Login</a>
-            <p>|</p>
-            <a href="{% url 'registro' %}">Registre-se</a>
-        </div>
+            <a href="{% url 'bibliotecando:logout' %}" style="color: #7474FD;">Logout</a>
+            {% else %}
+            <div id="authentication-links">
+                <a href="{% url 'bibliotecando:login' %}" style="color: #7474FD;">Login</a>
+                <p>|</p>
+                <a href="{% url 'bibliotecando:registro' %}">Registre-se</a>
+            </div>
+            {% endif %}
     </header>
     {%block 'body'%}{%endblock%}
 </body>
+
 </html>

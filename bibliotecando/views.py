@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from . import models
 from . import forms
+
+
 # Create your views here.
 def descubra(request):
     livros = models.Livro.objects.all()
     return render(request, 'bibliotecando/descubra.html', {'livros': livros})
 
+@login_required(login_url='bibliotecando:login')
 def MeusLivros(request):
     models.Favoritos.objects.all()
     return render(request, 'bibliotecando/meusLivros.html')
@@ -15,13 +19,22 @@ def MeusLivros(request):
 def detalhesLivro(request, id):
     livro = models.Livro.objects.get(id=id)
     comentarios = models.Comentario.objects.filter(livro=livro)
+    links = models.Links.objects.filter(livro=livro)
     contexto = {
         'livro': livro,
         'publicacao': f"{livro.data_publicacao.day}/{livro.data_publicacao.month}/{livro.data_publicacao.year}",
-        'comentarios': comentarios
+        'comentarios': comentarios,
+        'links': links
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
 
+@login_required(login_url='bibliotecando:login')
+def profile(request):
+    usuario = request.user
+    context = {
+        'usuario': usuario
+    }
+    return render(request, 'bibliotecando/profile.html', context)
 
 #Sistema de login
 def register(request):
@@ -43,15 +56,17 @@ def login_view(request):
         password = request.POST['password']
 
         user = authenticate(request, username=username, password=password)
+        print(username)
 
         if user is not None:
-            login(request, user)
-            return redirect('gerencia:gerencia_inicial')
+            login(request,user)
+            
+            return redirect('bibliotecando:descubra')
         else:
             messages.error(request, 'Usuário ou senha inválidos.')
 
-    return render(request, 'usuarios/login.html')
+    return render(request, 'bibliotecando/login.html')
 
 def logout_view(request):
     logout(request)
-    return redirect('usuarios:login')
+    return redirect('bibliotecando:login')

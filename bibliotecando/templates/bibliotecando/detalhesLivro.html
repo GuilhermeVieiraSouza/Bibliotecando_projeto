@@ -31,6 +31,19 @@
             <p>
                 {{livro.descricao}}
             </p>
+            <!--aqui está a parte de links para download/compra -->
+            <div>
+                <P>
+                    Disponível em:
+                </P>
+                {%for link in links%}
+                <button class="button-link" >
+                        <a href="{{link.url}}" target="_blank">
+                        <p>{{link.nome}}</p>
+                    </a>
+                </button>
+                {%endfor%}
+            </div>
             <!-- aqui está a parte de comentarios -->
             <section>
                 <h2 class="h2_comentarios">Comentários</h3>

@@ -2,18 +2,21 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
+
+
 class Usuario(AbstractUser):
-    data_nascimento = models.DateField()
+    data_nascimento = models.DateField(blank=True, null=True)
     imagem = models.ImageField(upload_to='usuarios/', blank=True, null=True)
     groups = models.ManyToManyField(Group, related_name="usuario_set") 
     user_permissions = models.ManyToManyField(Permission, related_name="usuario_permissions_set")
+    
 
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
 
     def __str__(self):
-        return f'{self.username} {self.data_nascimento}'
+        return f'{self.username} {self.data_nascimento}' 
 
 class Autor(models.Model):
     nome = models.CharField(max_length=255)
@@ -51,7 +54,7 @@ class Links(models.Model):
         verbose_name = 'Link'
         verbose_name_plural = 'Links'
     def __str__(self):
-        return f'{self.url} {self.Livro}'
+        return f'{self.url} {self.livro}'
     
 class Comentario(models.Model):
     texto = models.TextField()
