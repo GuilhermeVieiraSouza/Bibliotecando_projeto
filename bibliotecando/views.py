@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -16,6 +17,20 @@ def detalhesLivro(request, id):
     livro = models.Livro.objects.get(id=id)
     comentarios = models.Comentario.objects.filter(livro=livro)
     links = models.Links.objects.filter(livro=livro)
+    categorias = models.Categoria.objects.filter(livro_categoria=livro)
+    favorito = None
+    if request.user.is_authenticated:
+        favorito = models.Favoritos.objects.filter(usuario=request.user, livro=livro).exists()
+    if request.method == "POST" and request.user.is_authenticated:
+        action = request.POST.get('action')
+        if action == "toggle_favorito":
+            if favorito:
+                models.Favoritos.objects.filter(usuario=request.user, livro=livro).delete()
+                favorito = False
+            else:
+                models.Favoritos.objects.create(usuario=request.user, livro=livro)
+                favorito = True
+            return JsonResponse({'favorito': favorito})
 
     if request.method == "POST" and request.user.is_authenticated:
         form = forms.ComentarioForm(request.POST)
@@ -34,14 +49,19 @@ def detalhesLivro(request, id):
         'livro': livro,
         'publicacao': f"{livro.data_publicacao.day}/{livro.data_publicacao.month}/{livro.data_publicacao.year}",
         'comentarios': comentarios,
-        'links': links
+        'links': links,
+        'categorias': categorias,
+        'favorito': favorito,
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
 
 @login_required(login_url='bibliotecando:login')
 def MeusLivros(request):
-    models.Favoritos.objects.all()
-    return render(request, 'bibliotecando/meusLivros.html')
+    favoritos = models.Favoritos.objects.filter(usuario=request.user)
+    context = {
+        'favoritos': favoritos
+    }
+    return render(request, 'bibliotecando/meusLivros.html', context)
 
 @login_required(login_url='bibliotecando:login')
 def profile(request):

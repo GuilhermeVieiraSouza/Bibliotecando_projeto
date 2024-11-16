@@ -1,9 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/meusLivros.css' %}">
+{% endblock %}
 {% block 'titulo' %}Descubra novos livros!!{% endblock %}
 {% block 'body' %}
     <main>
-        <h1>
-            olá, estes são seus livros!!
-        </h1>
+        <div class="container_titulo">
+            <h2 class="titulo">My Books</h2>
+            <hr class="custom-line">
+        </div>
+        <div class="container_card">
+            {% for favorito in favoritos %}
+                <div class="card">
+                    <img src="{{ favorito.livro.imagem.url }}" alt="">
+                    <div>
+                        <p class="titulo_card">{{favorito.livro.titulo}}</p>
+                        <p class="autor" >{{favorito.livro.autor.nome}}</p>
+                        <a href="{%url 'bibliotecando:detalhesLivro' favorito.livro.id%}">
+                            <p>Ver livro</p>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </main>
 {% endblock %}

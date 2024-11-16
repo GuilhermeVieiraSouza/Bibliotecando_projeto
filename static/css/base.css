@@ -105,6 +105,28 @@ a {
     
 }
 
+/*barra da pagina*/
+.container_titulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2rem ;
+}
+
+.titulo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.custom-line {
+    width: 80%;
+    height: 1px;
+    background-color: #666;
+    border: none;
+}
+
 /*Inputs ded usuario*/
 .form-control {
     color: #252525;

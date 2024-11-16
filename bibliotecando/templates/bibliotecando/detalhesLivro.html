@@ -4,6 +4,7 @@
 {% block 'titulo' %}Detalhes do livro{% endblock %}
 {% block 'head' %}
 <link rel="stylesheet" href="{% static 'css/detalhesLivro.css' %}">
+<script src="{% static 'js/detalhesLivro.js' %}" defer></script>
 {% endblock %}
 {% block 'body' %}
 <main>
@@ -14,15 +15,24 @@
     <div class="container">
         <!-- aqui começa a parte da esquerda -->
         <div>
-            <!-- aqui fica o cardzinho, caso queira adicionar algo fora dele precisa ser fora da div que vem a seguir -->
+            <!-- aqui fica o card, caso queira adicionar algo fora dele precisa ser fora da div que vem a seguir -->
             <div class="detalhes_container">
                 <div class="detalhes_img">
                     <img src="{{ livro.imagem.url }}" alt="">
                 </div>
                 <div class="detalhes_info">
-                    <p>{{livro.autor.nome}}</p>
-                    <p>Publicação: {{publicacao}}</p>
-                    <p>{{livro.genero}}</p>
+                    <div style="display: flex; flex-direction: column;">
+                        <p id="nome_livro">{{livro.titulo}}</p>
+                        <p>{{livro.autor.nome}}</p>
+                        <p id="data_publicacao">{{publicacao}}</p>
+                    </div>
+                    <button id="favorito-btn" data-favorito="{{ favorito|yesno:'true,false' }}">
+                        {% if favorito %}
+                            <img class="fav-img" src="{% static 'svg/bookmark_filled.svg' %}" alt="Remover dos favoritos">
+                        {% else %}
+                            <img class="fav-img" src="{% static 'svg/bookmark.svg' %}" alt="Adicionar aos favoritos">
+                        {% endif %}
+                    </button>
                 </div>
             </div>
             <!-- aqui fica a adição de comentario-->
@@ -51,13 +61,15 @@
                     <img src="{% static 'svg/coment.svg' %}" alt="">
                 </button>
             </form>
-            <div>
-                <button >
-
-                </button>
-            </div>
             {% endif %}
-
+            <h3 style="margin-left: 2rem; color: #444;">Generos:</h3>
+            <div style="margin: 2rem;">
+                <p class="categoria">
+                    {% for categoria in categorias %}
+                    {{categoria.nome}}.
+                    {% endfor %}
+                </p>
+            </div>
         </div>
         <!-- aqui começa a parte da direita  -->
         <div class="container_direita">

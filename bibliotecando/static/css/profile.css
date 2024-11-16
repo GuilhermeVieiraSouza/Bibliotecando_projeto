@@ -13,25 +13,7 @@ main {
     width: screen;
 }
 
-.container_titulo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.titulo {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #444;
-}
-
-.custom-line {
-    width: 80%;
-    height: 1px;
-    background-color: #666;
-    border: none;
-}
 
 .imagem-perfil {
     width: 14rem;
