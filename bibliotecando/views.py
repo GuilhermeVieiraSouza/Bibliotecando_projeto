@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from . import models
 from . import forms
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -15,9 +16,18 @@ def descubra(request):
 
 def detalhesLivro(request, id):
     livro = models.Livro.objects.get(id=id)
-    comentarios = models.Comentario.objects.filter(livro=livro)
+    comentarios = models.Comentario.objects.filter(livro=livro).order_by('data')
     links = models.Links.objects.filter(livro=livro)
     categorias = models.Categoria.objects.filter(livro_categoria=livro)
+    paginator = Paginator(comentarios, 3)  # 10 usuários por página
+    
+    page = request.GET.get('page', 1)
+    try:
+        comentarios = paginator.page(page)
+    except:
+        comentarios = paginator.page(1)
+
+
     favorito = None
     if request.user.is_authenticated:
         favorito = models.Favoritos.objects.filter(usuario=request.user, livro=livro).exists()
@@ -42,6 +52,8 @@ def detalhesLivro(request, id):
             return redirect('bibliotecando:detalhesLivro', id=id)
     else:
         form = forms.ComentarioForm()
+
+    
 
     contexto = {
         'stars_range': range(1, 6),

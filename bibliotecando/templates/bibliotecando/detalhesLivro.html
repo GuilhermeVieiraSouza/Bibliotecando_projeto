@@ -96,7 +96,7 @@
                         {% for comentario in comentarios %}
                         <div class="container_comentario">
                             <div class="container_usuario">
-                                <img src="{{comentario.usuario.imagem.url}}" alt="">
+                                
 
                             </div>
                             <div class="comentario">
@@ -108,7 +108,11 @@
                             </div>
                         </div>
                         {% endfor %}
+                        <div class="mt-3">
+                            {% include 'bibliotecando/pagination.html' with page_obj=comentarios %}
+                        </div>
                     </div>
+    
             </section>
 
         </div>
