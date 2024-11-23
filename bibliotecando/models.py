@@ -83,7 +83,7 @@ class Favoritos(models.Model):
     
 class Categoria(models.Model):
     nome = models.CharField(max_length=255)
-    descricao = models.TextField()
+    descricao = models.TextField() 
     livro_categoria = models.ManyToManyField(Livro)
 
     class Meta:

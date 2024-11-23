@@ -1,23 +1,15 @@
 <!-- templates/components/pagination.html -->
 {% if page_obj.paginator.num_pages > 1 %}
 <nav aria-label="Navegação de páginas">
-    <ul class="pagination justify-content-end mb-0">
+    <ul class="pagination ">
         {% if page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page=1" aria-label="Primeira">
-                    <span aria-hidden="true">&laquo;&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
+            <li class="page-item arrow-left">
                 <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
         {% else %}
-            <li class="page-item disabled">
-                <span class="page-link">&laquo;&laquo;</span>
-            </li>
-            <li class="page-item disabled">
+            <li class="page-item disabled arrow-left">
                 <span class="page-link">&laquo;</span>
             </li>
         {% endif %}
@@ -35,24 +27,62 @@
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <li class="page-item">
+            <li class="page-item enabled arrow-right">
                 <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
-                    <span aria-hidden="true">&raquo;&raquo;</span>
-                </a>
-            </li>
+           
         {% else %}
-            <li class="page-item disabled">
+            <li class="page-item disabled arrow-right">
                 <span class="page-link">&raquo;</span>
             </li>
-            <li class="page-item disabled">
-                <span class="page-link">&raquo;&raquo;</span>
-            </li>
+            
         {% endif %}
     </ul>
 </nav>
 {% endif %}
+
+<style>
+    .pagination{
+        justify-content: start;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 2rem;
+        
+     }
+    .page-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.2rem 0.5rem;
+        border-left: 1px solid #7474FD;
+        border-top: 1px solid #7474FD;
+        border-bottom: 1px solid #7474FD;
+
+        background-color: #F0F2F5;
+    }
+    .active{
+        background-color: #7474FD;
+        color: white;
+    }
+    .disabled{
+        pointer-events: none;
+        background-color: #F0F2F5;
+        color: #D5D7E0;
+    }
+    .enabled{
+        color: gray;
+    }
+    .arrow-left{
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+    .arrow-right{
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        border-right: 1px solid #7474FD;
+        
+    }
+</style>
