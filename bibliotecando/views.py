@@ -8,6 +8,10 @@ from . import forms
 from django.core.paginator import Paginator
 
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseForbidden
+
+
 # Create your views here.
 def descubra(request):
     livros = models.Livro.objects.all()
@@ -19,8 +23,7 @@ def detalhesLivro(request, id):
     comentarios = models.Comentario.objects.filter(livro=livro).order_by('data')
     links = models.Links.objects.filter(livro=livro)
     categorias = models.Categoria.objects.filter(livro_categoria=livro)
-    paginator = Paginator(comentarios, 3)  # 10 usuários por página
-    
+    paginator = Paginator(comentarios, 3)  
     page = request.GET.get('page', 1)
     try:
         comentarios = paginator.page(page)
@@ -66,6 +69,17 @@ def detalhesLivro(request, id):
         'favorito': favorito,
         }
     return render(request, 'bibliotecando/detalhesLivro.html', contexto)
+
+@login_required
+def apagarComentario(request, id): 
+    comentario = get_object_or_404(models.Comentario, id=id)
+    if comentario.usuario != request.user:
+        return HttpResponseForbidden("Você não tem permissão para apagar este comentário.")
+
+    id_livro = comentario.livro.id
+    comentario.delete()
+
+    return redirect('bibliotecando:detalhesLivro', id=id_livro)
 
 @login_required(login_url='bibliotecando:login')
 def MeusLivros(request):

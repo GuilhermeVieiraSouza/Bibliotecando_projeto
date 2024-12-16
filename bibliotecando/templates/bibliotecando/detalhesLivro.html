@@ -97,10 +97,15 @@
                         <div class="container_comentario">
                             <div class="container_usuario">
                                 
-
                             </div>
                             <div class="comentario">
-                                <p>{{comentario.usuario.username}}</p>
+                                <div style="display: flex; flex-direction: row; justify-content: space-between; padding-inline: 0.5rem; align-items: center;">
+                                    <p>{{comentario.usuario.username}}</p>
+                                    
+                                        <a href="{% url 'bibliotecando:apagarComentario' comentario.id%}">
+                                            <img src="{% static 'svg/delete.svg' %}" alt="" style="width: 1.5rem;">
+                                        </a>
+                                </div>
                                 <p>{{comentario.texto}}</p>
                                 <p id="estrelas">
                                     {% for i in stars_range %}
